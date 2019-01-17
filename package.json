@@ -1,0 +1,28 @@
+{
+	"name": "LSIBot",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "git@github.com:mortim59/LSIBot.git",
+	"author": "WebD01 <liangu@protonmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\"",
+		"start": "tsc && node dist/index.js",
+		"lint": "tslint --fix --project .",
+		"build": "tsc"
+	},
+	"dependencies": {
+		"discord.js": "^11.4.2",
+		"graphql": "^14.0.2",
+		"graphql-got": "^0.1.2",
+		"graphql-tag": "^2.10.0",
+		"node-fetch": "^2.3.0"
+	},
+	"devDependencies": {
+		"@types/node": "^10.12.18",
+		"concurrently": "^4.1.0",
+		"nodemon": "^1.18.9",
+		"tslint": "^5.12.0",
+		"typescript": "^3.2.2"
+	}
+}
