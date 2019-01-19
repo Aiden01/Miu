@@ -1,107 +1,110 @@
-import { Client, Message, PermissionResolvable } from 'discord.js'
-import ICommand from './interfaces/ICommand'
-import IConfig from './interfaces/IConfig'
-import helpService from './services/HelpService'
-import { flatArray } from './utils'
-import { getCommand, parseMessage } from './utils/commands'
+import { Client, Message, PermissionResolvable } from 'discord.js';
+import ICommand from './interfaces/ICommand';
+import IConfig from './interfaces/IConfig';
+import helpService from './services/HelpService';
+import { flatArray } from './utils';
+import { getCommand, parseMessage } from './utils/commands';
 
 export class Bot extends Client {
-    public config: IConfig = {}
-    public modules: Map<string, ICommand[]> = new Map()
-    private cmdNotFoundHandler?: (message: Message) => void
+    public config: IConfig = {};
+    public modules: Map<string, ICommand[]> = new Map();
+    private cmdNotFoundHandler?: (message: Message) => void;
     private notEnoughArgs?: (
         message: Message,
         expected: number,
         got: number
-    ) => void
+    ) => void;
     private lackOfPermissionsHandler?: (
         message: Message,
         command: ICommand
-    ) => void
-    private helpEnabled: boolean = false
+    ) => void;
+    private helpEnabled: boolean = false;
 
     /**
      * @description Sets the event handler
      */
     public eventHandler(Handler: object): Bot {
         this.on('ready', () => {
-            Handler.onReady(this)
-        })
+            Handler.onReady(this);
+        });
 
         this.on('message', (message: Message) => {
-            this.handleMessage(message)
-        })
+            this.handleMessage(message);
+        });
 
-        return this
+        return this;
     }
 
     /**
      * @description Sets the config object
      */
     public setConfig(confObject: IConfig): Bot {
-        this.config = confObject
-        return this
+        this.config = confObject;
+        return this;
     }
 
     public module(moduleName: string, commands: () => ICommand[]): Bot {
-        this.modules.set(moduleName, commands())
-        return this
+        this.modules.set(moduleName, commands());
+        return this;
     }
 
     /**
      * @description Fired when the command is not found
      */
     public onCommandNotFound(handler: (message: Message) => void): Bot {
-        this.cmdNotFoundHandler = handler
-        return this
+        this.cmdNotFoundHandler = handler;
+        return this;
     }
 
     public onNotEnoughArgs(
         handler: (message: Message, expected: number, got: number) => void
     ): Bot {
-        this.notEnoughArgs = handler
-        return this
+        this.notEnoughArgs = handler;
+        return this;
     }
 
     public enableHelp(isEnabled: boolean): Bot {
-        this.helpEnabled = isEnabled
-        return this
+        this.helpEnabled = isEnabled;
+        return this;
     }
 
     public lackOfPermissions(
         fn: (message: Message, command: ICommand) => void
     ): Bot {
-        this.lackOfPermissionsHandler = fn
-        return this
+        this.lackOfPermissionsHandler = fn;
+        return this;
     }
 
     /**
      * @description Handles the new incomming message
      */
     private handleMessage(message: Message) {
-        const { content, author } = message
+        const { content, author } = message;
 
         if (author.bot) {
-            return
+            return;
         }
 
         if (!content.startsWith(this.config.prefix)) {
-            return
+            return;
         }
 
-        const [commandName, ...args] = parseMessage(content, this.config.prefix)
+        const [commandName, ...args] = parseMessage(
+            content,
+            this.config.prefix
+        );
 
-        const command = getCommand(this.modules, commandName)
+        const command = getCommand(this.modules, commandName);
         if (commandName === 'help' && this.helpEnabled) {
             helpService(this.modules, message, this.config, args).catch(
                 console.error
-            )
+            );
         } else {
             if (command) {
-                this.handleCommand(command, args, message)
+                this.handleCommand(command, args, message);
             } else {
                 if (this.cmdNotFoundHandler) {
-                    this.cmdNotFoundHandler(message)
+                    this.cmdNotFoundHandler(message);
                 }
             }
         }
@@ -118,15 +121,15 @@ export class Bot extends Client {
         // Checks if the arguments are correctly passed
         if (command.maxArgs && args.length > command.maxArgs) {
             if (this.notEnoughArgs) {
-                this.notEnoughArgs(message, command.maxArgs, args.length)
+                this.notEnoughArgs(message, command.maxArgs, args.length);
             }
         } else if (command.minArgs && args.length < command.minArgs) {
             if (this.notEnoughArgs) {
-                this.notEnoughArgs(message, command.minArgs, args.length)
+                this.notEnoughArgs(message, command.minArgs, args.length);
             }
         } else if (command.numArgs && args.length !== command.numArgs) {
             if (this.notEnoughArgs) {
-                this.notEnoughArgs(message, command.numArgs, args.length)
+                this.notEnoughArgs(message, command.numArgs, args.length);
             }
         } else {
             if (command.permissions) {
@@ -137,16 +140,16 @@ export class Bot extends Client {
                         )
                     ) {
                         if (this.lackOfPermissionsHandler) {
-                            this.lackOfPermissionsHandler(message, command)
+                            this.lackOfPermissionsHandler(message, command);
                         }
                     } else {
                         command
                             .handler(this, message, args)
-                            .catch(console.error)
+                            .catch(console.error);
                     }
                 }
             } else {
-                command.handler(this, message, args).catch(console.error)
+                command.handler(this, message, args).catch(console.error);
             }
         }
     }
