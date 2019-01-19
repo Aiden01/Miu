@@ -1,4 +1,4 @@
-import { Client, Message, PermissionResolvable } from 'discord.js';
+import { Client, Guild, Message, PermissionResolvable } from 'discord.js';
 import ICommand from './interfaces/ICommand';
 import IConfig from './interfaces/IConfig';
 import helpService from './services/HelpService';
@@ -31,6 +31,10 @@ export class Bot extends Client {
         this.on('message', (message: Message) => {
             this.handleMessage(message);
             Handler.onMessage(message);
+        });
+
+        this.on('guildCreate', (guild: Guild) => {
+            Handler.guildCreate(guild).catch(console.error);
         });
 
         return this;
