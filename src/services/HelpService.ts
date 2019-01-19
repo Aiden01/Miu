@@ -19,7 +19,7 @@ export default function runService(
         helpEmbed.setTitle(`All available commands in module ${moduleName}`);
         for (const { name, description, argsName } of module) {
             const args = argsName ? ' - ' + argsName.join(', ') : '';
-            helpEmbed.addField(`${name} ${args}`, description);
+            helpEmbed.addField(`${name} ${args}`, description, true);
         }
     } else {
         helpEmbed.setTitle('All available modules');
