@@ -23,13 +23,14 @@ export class Bot extends Client {
     /**
      * @description Sets the event handler
      */
-    public eventHandler(Handler: object): Bot {
+    public eventHandler(Handler: any): Bot {
         this.on('ready', () => {
             Handler.onReady(this);
         });
 
         this.on('message', (message: Message) => {
             this.handleMessage(message);
+            Handler.onMessage(message);
         });
 
         return this;

@@ -7,7 +7,7 @@ export default function runService(
     { channel }: Message,
     config: IConfig,
     [moduleName]: string[]
-): Promise<Message, Message[]> {
+): Promise<any> {
     const helpEmbed = new RichEmbed()
         .setColor(config.color)
         .setTimestamp(new Date());
