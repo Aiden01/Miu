@@ -17,6 +17,7 @@ A Discord bot that helps you manage your servers, but also includes some fun com
     - Nuke
     - DisableFeature
     - EnableFeature
+    - Addbadwords
 * Misc
     - Ping
     - Lmgtfy
