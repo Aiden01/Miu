@@ -1,13 +1,13 @@
-import { Message } from "discord.js";
-import { Bot } from "../Bot";
+import { Message } from 'discord.js'
+import { Bot } from '../Bot'
 
 export default interface ICommand {
-  name: string;
-  description?: string;
-  minArgs?: number;
-  maxArgs?: number;
-  numArgs?: number;
-  argsName?: string[];
-  permissions?: string[];
-  handler: (ctx: Bot, message: Message, args: string[]) => Promise<any>;
+    name: string
+    description?: string
+    minArgs?: number
+    maxArgs?: number
+    numArgs?: number
+    argsName?: string[]
+    permissions?: string[]
+    handler: (ctx: Bot, message: Message, args: string[]) => Promise<any>
 }
