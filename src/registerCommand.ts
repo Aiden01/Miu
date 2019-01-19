@@ -118,5 +118,13 @@ function registerModModule() {
             name: 'enablefeature',
             permissions: ['MANAGE_GUILD'],
         },
+        {
+            argsName: ['Features'],
+            description: 'Disable one or more features',
+            handler: require('./commands/moderation/DisableFeature').default,
+            minArgs: 1,
+            name: 'disablefeature',
+            permissions: ['MANAGE_GUILD'],
+        },
     ];
 }

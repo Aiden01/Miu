@@ -9,15 +9,15 @@ export default async function run(
     features: string[]
 ): Promise<any> {
     const confirmationMessage: Message = (await channel.send(
-        'Enabling features...'
+        'Disabling features...'
     )) as Message;
 
     try {
         for (const feature of features) {
-            await enableOrDisableFeature(feature, guild.id);
+            await enableOrDisableFeature(feature, guild.id, false);
         }
 
-        confirmationMessage.edit('Features enabled :white_check_mark:');
+        confirmationMessage.edit('Features disabled :white_check_mark:');
     } catch (e) {
         return confirmationMessage.edit({ embed: errorEmbed(e.toString()) });
     }
