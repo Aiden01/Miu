@@ -24,3 +24,14 @@ export async function getBadWords(guildId: string): Promise<string[]> {
         return words.map(({ word }: any) => word);
     }
 }
+
+export async function addBadWord(serverId: string, word: string): Promise<any> {
+    return fetchApi(`
+        mutation insert_bad_words {
+            insert_bad_words(objects: [
+                { word: "${word}", serverId: "${serverId}" }
+            ]) {
+                affected_rows
+            }
+    }`);
+}

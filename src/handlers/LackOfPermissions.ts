@@ -6,7 +6,7 @@ export default function lackOfPermissions({ channel }: Message, _: ICommand) {
     channel
         .send({
             embed: errorEmbed(
-                "You don't have the required roles to use this command"
+                "You don't have the required permissions to use this command"
             ),
         })
         .catch(console.error);

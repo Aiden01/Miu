@@ -126,5 +126,13 @@ function registerModModule() {
             name: 'disablefeature',
             permissions: ['MANAGE_GUILD'],
         },
+        {
+            argsName: ['Words'],
+            description: 'Add one or more bad words',
+            handler: require('./commands/moderation/AddBadWords').default,
+            minArgs: 1,
+            name: 'addbadwords',
+            permissions: ['MANAGE_GUILD'],
+        },
     ];
 }
