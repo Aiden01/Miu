@@ -102,5 +102,13 @@ function registerModModule() {
             name: 'ban',
             permissions: ['BAN_MEMBERS'],
         },
+        {
+            argsName: ['Member', 'Message'],
+            description: 'Warn a member',
+            handler: require('./commands/moderation/Warn').default,
+            minArgs: 2,
+            name: 'warn',
+            permissions: ['manage_messages'],
+        },
     ];
 }
