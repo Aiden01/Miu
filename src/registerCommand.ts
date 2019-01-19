@@ -12,7 +12,14 @@ function registerMiscModule() {
         description: "Get the ping of the bot",
         handler: require("./commands/misc/Ping").default,
         name: "ping",
-    }];
+    },
+    {
+        description: "Send a link to lmgtfy",
+        handler: require("./commands/misc/Lmgtfy").default,
+        minArgs: 1,
+        name: "lmgtfy",
+    },
+    ];
 }
 
 function registerModModule() {
