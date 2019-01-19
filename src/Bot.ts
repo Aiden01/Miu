@@ -3,7 +3,7 @@ import ICommand from "./interfaces/ICommand";
 import IConfig from "./interfaces/IConfig";
 import helpService from "./services/HelpService";
 import { flatArray } from "./utils";
-import { parseMessage, getCommand } from "./utils/commands";
+import { getCommand, parseMessage } from "./utils/commands";
 
 export class Bot extends Client {
     public config: IConfig = {};

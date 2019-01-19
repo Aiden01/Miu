@@ -9,14 +9,14 @@ export default async function run({ config }: Bot, message: Message, [, ...rest]
 
     const reason = rest.length >= 1 ? rest.join(" ") : "Reason not defined";
 
-    const toKick: GuildMember = guild.member(mentions.users.first());
-    if (isAdmin(toKick) || toKick === member || !toKick) {
-        return channel.send("Cannot kick this user, either because he nor already muted or he is a moderator.");
+    const toBan: GuildMember = guild.member(mentions.users.first());
+    if (isAdmin(toBan) || toBan === member || !toBan) {
+        return channel.send("Cannot ban this user, either because he is already muted nor he is a moderator.");
     }
     try {
-        await toKick.send({ embed: confirmationEmbed("You have been kicked", reason, config.color, author) });
-        await toKick.kick(reason);
-        await channel.send(`<@${toKick.id}> has been kicked for: **${reason}**`);
+        await toBan.send({ embed: confirmationEmbed("You have been banned", reason, config.color, author) });
+        await toBan.ban(reason);
+        await channel.send(`<@${toBan.id}> has been banned for: **${reason}**`);
         return message.delete();
     } catch (e) {
         return channel.send(e.toString());

@@ -4,9 +4,6 @@ export function isAdmin(member: GuildMember) {
     return member.hasPermission("BAN_MEMBERS");
 }
 
-
-
-
 export function flatArray(arr: any[]): any[] {
     return [].concat(...arr);
 }

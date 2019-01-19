@@ -6,8 +6,8 @@ export default async function run(_: Bot, msg: Message, [n]: string[]): Promise<
     if (Number.isNaN(nb)) {
         return msg.channel.send("Please specify the amount of messages to delete");
     }
-    if (nb > 250) {
-       return msg.channel.send("Cannot delete more than 250 messages");
+    if (nb > 100) {
+       return msg.channel.send("Cannot delete more than 100 messages");
     }
 
     await msg.channel.bulkDelete(nb);

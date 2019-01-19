@@ -10,7 +10,7 @@ export default function registerCommand(bot: Bot) {
 function registerMiscModule() {
     return [{
         description: "Get the ping of the bot",
-        handler: require('./commands/misc/Ping').default,
+        handler: require("./commands/misc/Ping").default,
         name: "ping",
     }];
 }
@@ -47,5 +47,22 @@ function registerModModule() {
         minArgs: 1,
         name: "kick",
         permissions: ["KICK_MEMBERS"],
-    }];
+    },
+    {
+        argsName: ["Member", "Nickname"],
+        description: "Rename someone",
+        handler: require("./commands/moderation/Nick").default,
+        minArgs: 2,
+        name: "nick",
+        permissions: ["MANAGE_NICKNAMES"],
+    },
+    {
+        argsName: ["Member", "Reason"],
+        description: "Ban a member",
+        handler: require("./commands/moderation/Ban").default,
+        minArgs: 1,
+        name: "ban",
+        permissions: ["BAN_MEMBERS"],
+    },
+    ];
 }

@@ -1,6 +1,6 @@
 import { GuildMember, Message } from "discord.js";
 import { Bot } from "../../Bot";
-import { muteConfirmation } from "../../embed";
+import { confirmationEmbed } from "../../embed";
 import { alreadyMuted, getRole, isAdmin } from "../../utils";
 
 export default async function run({ config }: Bot, message: Message, [, ...rest]: string[]): Promise<any> {
@@ -17,7 +17,7 @@ export default async function run({ config }: Bot, message: Message, [, ...rest]
         const role = await getRole(guild, "muted");
         await toMute.addRole(role);
         await channel.send(`<@${toMute.id}> has been muted for: **${reason}**`);
-        await toMute.send({ embed: muteConfirmation(reason, config.color, author) });
+        await toMute.send({ embed: confirmationEmbed("You have been muted", reason, config.color, author) });
         return message.delete();
     } catch (e) {
         return channel.send(e.toString());
