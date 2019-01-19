@@ -12,11 +12,11 @@
 		"build": "tsc"
 	},
 	"dependencies": {
+		"axios": "^0.18.0",
 		"discord.js": "^11.4.2",
 		"graphql": "^14.0.2",
 		"graphql-got": "^0.1.2",
-		"graphql-tag": "^2.10.0",
-		"node-fetch": "^2.3.0"
+		"graphql-tag": "^2.10.0"
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.18",
@@ -36,6 +36,9 @@
 		}
 	},
 	"lint-staged": {
-		"**/*.ts": ["prettier-tslint fix", "git add"]
+		"**/*.ts": [
+			"prettier-tslint fix",
+			"git add"
+		]
 	}
 }
