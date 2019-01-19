@@ -1,9 +1,9 @@
-import { Bot } from './Bot'
+import { Bot } from './Bot';
 
 export default function registerCommand(bot: Bot) {
     bot.module('moderation', registerModModule)
         .module('misc', registerMiscModule)
-        .module('utility', registerUtilityModule)
+        .module('utility', registerUtilityModule);
 }
 
 function registerUtilityModule() {
@@ -13,7 +13,12 @@ function registerUtilityModule() {
             handler: require('./commands/utility/ServerInfo').default,
             name: 'serverinfo',
         },
-    ]
+        {
+            description: 'Get information about the bot',
+            handler: require('./commands/utility/About').default,
+            name: 'about',
+        },
+    ];
 }
 
 function registerMiscModule() {
@@ -35,7 +40,7 @@ function registerMiscModule() {
             minArgs: 1,
             name: 'pfp',
         },
-    ]
+    ];
 }
 
 function registerModModule() {
@@ -88,5 +93,5 @@ function registerModModule() {
             name: 'ban',
             permissions: ['BAN_MEMBERS'],
         },
-    ]
+    ];
 }

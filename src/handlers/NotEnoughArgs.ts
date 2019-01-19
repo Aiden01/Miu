@@ -1,5 +1,5 @@
-import { Message } from 'discord.js'
-import { errorEmbed } from '../embed'
+import { Message } from 'discord.js';
+import { errorEmbed } from '../embed';
 
 export default function notEnoughArgs(
     { channel }: Message,
@@ -12,5 +12,5 @@ export default function notEnoughArgs(
                 `This command requires ${expected} argument(s), got ${got}`
             ),
         })
-        .catch(console.error)
+        .catch(console.error);
 }

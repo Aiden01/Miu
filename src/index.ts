@@ -1,9 +1,9 @@
-import { Bot } from './Bot'
-import CmdNotFound from './handlers/CmdNotFound'
-import EventHandler from './handlers/EventHandler'
-import LackOfPermissionsHandler from './handlers/LackOfPermissions'
-import NotEnoughArgs from './handlers/NotEnoughArgs'
-import registerCommand from './registerCommand'
+import { Bot } from './Bot';
+import CmdNotFound from './handlers/CmdNotFound';
+import EventHandler from './handlers/EventHandler';
+import LackOfPermissionsHandler from './handlers/LackOfPermissions';
+import NotEnoughArgs from './handlers/NotEnoughArgs';
+import registerCommand from './registerCommand';
 
 const config = {
     prefix: '~~',
@@ -11,7 +11,8 @@ const config = {
     color: '#524e8c',
     welcomeChannel: '526037066715365395',
     mutedRoleId: '531157405304750090',
-}
+    ownerId: '337364150080503809',
+};
 
 const bot: Bot = new Bot()
     .eventHandler(EventHandler)
@@ -19,9 +20,9 @@ const bot: Bot = new Bot()
     .lackOfPermissions(LackOfPermissionsHandler)
     .onNotEnoughArgs(NotEnoughArgs)
     .onCommandNotFound(CmdNotFound)
-    .enableHelp(true)
+    .enableHelp(true);
 
 // commands
-registerCommand(bot)
+registerCommand(bot);
 
-bot.login(process.env.BOT_TOKEN)
+bot.login(process.env.BOT_TOKEN);
