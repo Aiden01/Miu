@@ -10,7 +10,12 @@ const instance = axios.create({
 
 export function fetchApi(query: string): Promise<any> {
     const graphqlQuery = JSON.stringify({ query });
-    return instance
-        .post('graphql', graphqlQuery)
-        .then(response => response.data.data);
+    return instance.post('graphql', graphqlQuery).then(response => {
+        const data = response.data;
+        if (data.errors) {
+            return data.errors.map(({ message }: any) => message).join(', ');
+        } else {
+            return data.data;
+        }
+    });
 }

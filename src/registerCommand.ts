@@ -110,5 +110,13 @@ function registerModModule() {
             name: 'warn',
             permissions: ['manage_messages'],
         },
+        {
+            argsName: ['Features'],
+            description: 'Enable one or more features',
+            handler: require('./commands/moderation/EnableFeature').default,
+            minArgs: 1,
+            name: 'enablefeature',
+            permissions: ['MANAGE_GUILD'],
+        },
     ];
 }

@@ -5,8 +5,8 @@ export async function badWordsFeatureEnable(guildId: string): Promise<boolean> {
         servers: [server],
     } = await fetchApi(`{
         servers(where: {serverId: {_eq: "${guildId}"}}) {
-            badWordsOn
+            badwordson
         }
     }`);
-    return server.badWordsOn;
+    return server.badwordson;
 }
