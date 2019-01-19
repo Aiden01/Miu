@@ -15,10 +15,16 @@ A Discord bot that helps you manage your servers, but also includes some fun com
     - Unmute
     - Nick
     - Nuke
+    - DisableFeature
+    - EnableFeature
 * Misc
     - Ping
     - Lmgtfy
+    - Pfp
+    - Rps
+* Utility
     - Serverinfo
+    - About
 
 ## More details/Invite MiuBot to your server
 > Coming soon!
