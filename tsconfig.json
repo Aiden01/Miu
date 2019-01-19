@@ -3,7 +3,7 @@
         "module": "commonjs",
         "esModuleInterop": true,
         "outDir": "dist",
-        "target": "es6",
+        "target": "es2018",
         "strict": true
     },
     "include": [

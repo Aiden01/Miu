@@ -8,7 +8,7 @@
 	"scripts": {
 		"dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\"",
 		"start": "tsc && node dist/index.js",
-		"lint": "prettier-tslint fix '**/*.ts'",
+		"format": "prettier-tslint fix '**/*.ts'",
 		"build": "tsc"
 	},
 	"dependencies": {
@@ -21,11 +21,21 @@
 	"devDependencies": {
 		"@types/node": "^10.12.18",
 		"concurrently": "^4.1.0",
+		"husky": "^1.3.1",
+		"lint-staged": "^8.1.0",
 		"nodemon": "^1.18.9",
 		"prettier": "^1.15.3",
 		"prettier-tslint": "^0.4.2",
 		"tslint": "^5.12.0",
 		"tslint-config-prettier": "^1.17.0",
 		"typescript": "^3.2.2"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"**/*.ts": ["prettier-tslint fix", "git add"]
 	}
 }

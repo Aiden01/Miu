@@ -29,16 +29,25 @@ function registerMiscModule() {
             name: 'ping',
         },
         {
+            argsName: ['Query'],
             description: 'Send a link to lmgtfy',
             handler: require('./commands/misc/Lmgtfy').default,
             minArgs: 1,
             name: 'lmgtfy',
         },
         {
+            argsName: ['Member'],
             description: 'Send the profile picture of a member',
             handler: require('./commands/misc/Pfp').default,
             minArgs: 1,
             name: 'pfp',
+        },
+        {
+            argsName: ['Choice'],
+            description: 'Play Rock-Paper-Scissors with the bot',
+            handler: require('./commands/misc/Rps').default,
+            name: 'rps',
+            numArgs: 1,
         },
     ];
 }
