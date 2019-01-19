@@ -25,3 +25,5 @@ const bot: Bot = new Bot()
 registerCommand(bot);
 
 bot.login(process.env.BOT_TOKEN);
+
+

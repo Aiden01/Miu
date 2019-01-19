@@ -19,6 +19,11 @@ function registerMiscModule() {
         minArgs: 1,
         name: "lmgtfy",
     },
+    {
+        description: "Get general information about the server",
+        handler: require("./commands/misc/ServerInfo").default,
+        name: "serverinfo",
+    },
     ];
 }
 
