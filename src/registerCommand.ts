@@ -49,6 +49,11 @@ function registerMiscModule() {
             name: 'rps',
             numArgs: 1,
         },
+        {
+            description: 'Get the awesome quote of the day',
+            handler: require('./commands/misc/Quote').default,
+            name: 'quote',
+        },
     ];
 }
 

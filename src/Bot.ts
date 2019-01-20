@@ -5,7 +5,12 @@ import helpService from './services/HelpService';
 import { getCommand, parseMessage } from './utils/commands';
 
 export class Bot extends Client {
-    public config: IConfig = { color: '', ownerId: '', prefix: '~~' };
+    public config: IConfig = {
+        color: '',
+        ownerId: '',
+        prefix: '~~',
+        quoteApiEndpoint: '',
+    };
     public modules: Map<string, ICommand[]> = new Map();
     private cmdNotFoundHandler?: (message: Message) => void;
     private notEnoughArgs?: (

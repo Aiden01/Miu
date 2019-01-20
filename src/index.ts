@@ -9,6 +9,7 @@ const config = {
     color: '#524e8c',
     ownerId: '337364150080503809',
     prefix: '~~',
+    quoteApiEndpoint: 'http://quotes.rest/qod.json',
 };
 
 const bot: Bot = new Bot()
