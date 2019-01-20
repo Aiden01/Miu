@@ -6,7 +6,7 @@
 	"author": "WebD01 <liangu@protonmail.com>",
 	"license": "MIT",
 	"engines": {
-		"node": "10.11.3"
+		"node": "10"
 	},
 	"scripts": {
 		"dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\"",
