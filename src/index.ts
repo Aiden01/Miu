@@ -7,11 +7,8 @@ import registerCommand from './registerCommand';
 
 const config = {
     color: '#524e8c',
-    linkChannelId: '530377320742125589',
-    mutedRoleId: '531157405304750090',
     ownerId: '337364150080503809',
     prefix: '~~',
-    welcomeChannel: '526037066715365395',
 };
 
 const bot: Bot = new Bot()

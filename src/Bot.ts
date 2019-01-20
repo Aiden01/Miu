@@ -2,11 +2,10 @@ import { Client, Guild, Message, PermissionResolvable } from 'discord.js';
 import ICommand from './interfaces/ICommand';
 import IConfig from './interfaces/IConfig';
 import helpService from './services/HelpService';
-import { flatArray } from './utils';
 import { getCommand, parseMessage } from './utils/commands';
 
 export class Bot extends Client {
-    public config: IConfig = {};
+    public config: IConfig = { color: '', ownerId: '', prefix: '~~' };
     public modules: Map<string, ICommand[]> = new Map();
     private cmdNotFoundHandler?: (message: Message) => void;
     private notEnoughArgs?: (
