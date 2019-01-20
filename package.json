@@ -10,7 +10,6 @@
 	},
 	"scripts": {
 		"dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\"",
-		"start": "tsc && node dist/index.js",
 		"format": "prettier-tslint fix '**/*.ts'",
 		"build": "npx tsc",
 		"postinstall": "npm run build"
