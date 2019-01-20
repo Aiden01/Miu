@@ -1,4 +1,5 @@
 import { Message } from 'discord.js';
+import { log } from '../../API/logger';
 import { Bot } from '../../Bot';
 import { confirmationEmbed, errorEmbed } from '../../embed';
 import { isAdmin } from '../../utils';
@@ -43,6 +44,10 @@ export default async function run(
             channel.send(
                 `<@${target.id}> has been warned for: **${warnMessage}**`
             ),
+            log('A member has been warned', color, guild, {
+                Member: `<@${target.id}>`,
+                'Warn message': warnMessage,
+            }),
             message.delete(),
         ]);
     } catch (e) {
