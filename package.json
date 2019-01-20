@@ -5,6 +5,9 @@
 	"repository": "git@github.com:mortim59/LSIBot.git",
 	"author": "WebD01 <liangu@protonmail.com>",
 	"license": "MIT",
+	"engines": {
+		"node": "10.11.3"
+	},
 	"scripts": {
 		"dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\"",
 		"start": "tsc && node dist/index.js",
