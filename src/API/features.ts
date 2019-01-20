@@ -1,6 +1,6 @@
 import { fetchApi } from './MiuApi';
 
-const features = ['badwords'];
+const features = ['badwords', 'logs'];
 
 export async function enableOrDisableFeature(
     feature: string,

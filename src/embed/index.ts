@@ -33,7 +33,8 @@ export function serverInfo(
         region,
     }: Guild,
     color: string,
-    badWordsOn: boolean
+    badWordsOn: boolean,
+    logsOn: boolean
 ) {
     return new RichEmbed()
         .setColor(color)
@@ -58,7 +59,8 @@ export function serverInfo(
             channels.filter(channel => channel.type === 'voice').size,
             true
         )
-        .addField('Bad words feature', badWordsOn ? 'on' : 'off', true);
+        .addField('Bad words feature', badWordsOn ? 'on' : 'off', true)
+        .addField('Logger feature', logsOn ? 'on' : 'off', true);
 }
 
 export function pfpEmbed(

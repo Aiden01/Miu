@@ -9,7 +9,9 @@ export default async function runService(message: Message): Promise<any> {
         return;
     }
     const badWords = await getBadWords(guild.id);
-    const containsBadWords = badWords.some(word => content.includes(word));
+    const containsBadWords = badWords.some(word =>
+        content.toLowerCase().includes(word.toLowerCase())
+    );
 
     if (containsBadWords) {
         message.delete();
