@@ -1,13 +1,14 @@
 import { Message } from 'discord.js';
+import { log } from '../../API/logger';
 import { Bot } from '../../Bot';
 import { errorEmbed } from '../../embed';
 
 export default async function run(
-    _: Bot,
+    { config }: Bot,
     msg: Message,
     [n]: string[]
 ): Promise<any> {
-    const { channel } = msg;
+    const { channel, guild, author } = msg;
     const nb = parseInt(n, 10);
     if (Number.isNaN(nb)) {
         return channel.send({
@@ -23,5 +24,9 @@ export default async function run(
     }
 
     await channel.bulkDelete(nb);
+    log('Messages deleted', config.color, guild, {
+        Amount: nb,
+        Moderator: `<@${author.id}>`,
+    });
     return msg.delete();
 }

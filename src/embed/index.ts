@@ -108,3 +108,16 @@ export function aboutEmbed(
         )
         .addField('Owner', `<@${ownerId}>`, true);
 }
+
+export function logEmbed(
+    title: string,
+    color: string,
+    customFields: any
+): RichEmbed {
+    const embed = new RichEmbed().setTitle(title).setColor(color);
+
+    for (const [name, value] of Object.entries(customFields)) {
+        embed.addField(name, value);
+    }
+    return embed;
+}
