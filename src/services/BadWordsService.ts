@@ -3,7 +3,7 @@ import { badWordsFeatureEnable, getBadWords } from '../API/badWords';
 import { log } from '../API/logger';
 
 export default async function runService(message: Message): Promise<any> {
-    const { guild, content } = message;
+    const { guild, content, author } = message;
     const badWordsEnabled = await badWordsFeatureEnable(guild.id);
 
     if (!badWordsEnabled) {
@@ -17,7 +17,9 @@ export default async function runService(message: Message): Promise<any> {
     if (containsBadWords) {
         message.delete();
         log('Message deleted automatically', '#524e8c', guild, {
+            Message: content,
             Reason: 'Bad words detected',
+            User: `<@${author.id}>`,
         }).catch(console.error);
         return message.reply(
             'Your message has been deleted, no bad words please.'
