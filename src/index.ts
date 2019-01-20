@@ -6,12 +6,12 @@ import NotEnoughArgs from './handlers/NotEnoughArgs';
 import registerCommand from './registerCommand';
 
 const config = {
-    prefix: '~~',
-    linkChannelId: '530377320742125589',
     color: '#524e8c',
-    welcomeChannel: '526037066715365395',
+    linkChannelId: '530377320742125589',
     mutedRoleId: '531157405304750090',
     ownerId: '337364150080503809',
+    prefix: '~~',
+    welcomeChannel: '526037066715365395',
 };
 
 const bot: Bot = new Bot()
