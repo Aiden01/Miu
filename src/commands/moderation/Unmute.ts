@@ -6,7 +6,7 @@ import { alreadyMuted, getRole, isAdmin } from '../../utils';
 export default async function run(
     _: Bot,
     message: Message,
-    _args: string[]
+    args: string[]
 ): Promise<any> {
     const { member, mentions, guild, channel } = message;
     if (mentions.users.size < 1) {
