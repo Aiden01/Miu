@@ -3,7 +3,8 @@ import { Bot } from './Bot';
 export default function registerCommand(bot: Bot) {
     bot.module('moderation', registerModModule)
         .module('misc', registerMiscModule)
-        .module('utility', registerUtilityModule);
+        .module('utility', registerUtilityModule)
+        .module('features', registerFeaturesModule);
 }
 
 function registerUtilityModule() {
@@ -17,6 +18,35 @@ function registerUtilityModule() {
             description: 'Get information about the bot',
             handler: require('./commands/utility/About').default,
             name: 'about',
+        },
+    ];
+}
+
+function registerFeaturesModule() {
+    return [
+        {
+            argsName: ['Features'],
+            description: 'Enable one or more features',
+            handler: require('./commands/moderation/EnableFeature').default,
+            minArgs: 1,
+            name: 'enablefeature',
+            permissions: ['MANAGE_GUILD'],
+        },
+        {
+            argsName: ['Features'],
+            description: 'Disable one or more features',
+            handler: require('./commands/moderation/DisableFeature').default,
+            minArgs: 1,
+            name: 'disablefeature',
+            permissions: ['MANAGE_GUILD'],
+        },
+        {
+            argsName: ['Words'],
+            description: 'Add one or more bad words',
+            handler: require('./commands/moderation/AddBadWords').default,
+            minArgs: 1,
+            name: 'addbadwords',
+            permissions: ['MANAGE_GUILD'],
         },
     ];
 }
@@ -122,30 +152,6 @@ function registerModModule() {
             minArgs: 2,
             name: 'warn',
             permissions: ['manage_messages'],
-        },
-        {
-            argsName: ['Features'],
-            description: 'Enable one or more features',
-            handler: require('./commands/moderation/EnableFeature').default,
-            minArgs: 1,
-            name: 'enablefeature',
-            permissions: ['MANAGE_GUILD'],
-        },
-        {
-            argsName: ['Features'],
-            description: 'Disable one or more features',
-            handler: require('./commands/moderation/DisableFeature').default,
-            minArgs: 1,
-            name: 'disablefeature',
-            permissions: ['MANAGE_GUILD'],
-        },
-        {
-            argsName: ['Words'],
-            description: 'Add one or more bad words',
-            handler: require('./commands/moderation/AddBadWords').default,
-            minArgs: 1,
-            name: 'addbadwords',
-            permissions: ['MANAGE_GUILD'],
         },
     ];
 }
