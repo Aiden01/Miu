@@ -22,3 +22,29 @@ export function getRole(guild: Guild, roleName: string): Promise<Role> {
         return Promise.reject(new Error('Impossible de trouver le role'));
     }
 }
+
+export function parseTime(t: string): Promise<number> {
+    const str = t[t.length - 1];
+    const validStr = ['d', 's', 'h'];
+    const matches: any = {
+        d: 60 * 60 * 24,
+        h: 60 * 60,
+        s: 1,
+    };
+
+    if (!validStr.includes(str)) {
+        return Promise.reject(new Error('Invalid timestamp'));
+    } else {
+        const time = parseInt(t.slice(0, t.length - 1), 10);
+        if (Number.isNaN(time)) {
+            return Promise.reject(new Error('Invalid timestamp'));
+        } else {
+            const match = matches[str];
+            return Promise.resolve(match * 1000 * time);
+        }
+    }
+}
+
+export function scheduleCb(time: number, cb: any) {
+    setTimeout(cb, time);
+}

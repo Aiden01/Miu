@@ -112,7 +112,7 @@ export function aboutEmbed(
 export function logEmbed(
     title: string,
     color: string,
-    customFields: any
+    customFields: any = {}
 ): RichEmbed {
     const embed = new RichEmbed().setTitle(title).setColor(color);
 

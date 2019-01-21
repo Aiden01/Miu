@@ -76,6 +76,14 @@ function registerModModule() {
             permissions: ['manage_messages'],
         },
         {
+            argsName: ['Member', 'Time', 'Reason'],
+            description: 'Mute a member for a specific time',
+            handler: require('./commands/moderation/Tempmute').default,
+            minArgs: 2,
+            name: 'tempmute',
+            permissions: ['manage_messages'],
+        },
+        {
             argsName: ['Member'],
             description: 'Unmute a member',
             handler: require('./commands/moderation/Unmute').default,

@@ -1,13 +1,19 @@
 import { GuildMember, Message } from 'discord.js';
 import { Bot } from '../../Bot';
 import { confirmationEmbed, errorEmbed } from '../../embed';
-import { alreadyMuted, getRole, isAdmin } from '../../utils';
-import { muteUser } from '../../utils/mute';
+import {
+    alreadyMuted,
+    getRole,
+    isAdmin,
+    parseTime,
+    scheduleCb,
+} from '../../utils';
+import { muteUser, unMuteUser } from '../../utils/mute';
 
 export default async function run(
-    { config }: Bot,
+    _: Bot,
     message: Message,
-    [, ...rest]: string[]
+    [, time, ...rest]: string[]
 ): Promise<any> {
     const { author, mentions, guild, channel, member } = message;
     if (mentions.users.size < 1) {
@@ -28,7 +34,9 @@ export default async function run(
     }
 
     try {
+        const parsedTime = await parseTime(time);
         await muteUser(toMute, guild, reason, author);
+        scheduleCb(parsedTime, () => unMuteUser(toMute, guild));
         await channel.send(`<@${toMute.id}> has been muted for: **${reason}**`);
         return message.delete();
     } catch (e) {
