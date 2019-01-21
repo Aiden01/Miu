@@ -1,9 +1,13 @@
 import { Message } from 'discord.js';
 import { badWordsFeatureEnable, getBadWords } from '../API/badWords';
 import { log } from '../API/logger';
+import { isAdmin } from '../utils';
 
 export default async function runService(message: Message): Promise<any> {
-    const { guild, content, author } = message;
+    const { guild, content, author, member } = message;
+    if (author.bot || isAdmin(member)) {
+        return;
+    }
     const badWordsEnabled = await badWordsFeatureEnable(guild.id);
 
     if (!badWordsEnabled) {
