@@ -48,7 +48,6 @@ export default async function run(
                 Member: `<@${target.id}>`,
                 'Warn message': warnMessage,
             }),
-            message.delete(),
         ]);
     } catch (e) {
         return channel.send({ embed: errorEmbed(e.toString()) });

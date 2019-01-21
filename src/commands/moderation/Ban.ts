@@ -33,8 +33,9 @@ export default async function run(
             ),
         });
         await toBan.ban(reason);
-        await channel.send(`<@${toBan.id}> has been banned for: **${reason}**`);
-        return message.delete();
+        return channel.send(
+            `<@${toBan.id}> has been banned for: **${reason}**`
+        );
     } catch (e) {
         return channel.send({ embed: errorEmbed(e.toString()) });
     }

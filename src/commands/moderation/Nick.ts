@@ -14,8 +14,7 @@ export default async function run(
     const target = guild.member(mentions.users.first());
     try {
         await target.setNickname(nickname.join(' '));
-        await channel.send(`<@${target.id}> has been renamed`);
-        return await msg.delete();
+        return channel.send(`<@${target.id}> has been renamed`);
     } catch (e) {
         return channel.send({ embed: errorEmbed(e.toString()) });
     }

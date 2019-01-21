@@ -31,10 +31,9 @@ export default async function run(
             ),
         });
         await toKick.kick(reason);
-        await channel.send(
+        return channel.send(
             `<@${toKick.id}> has been kicked for: **${reason}**`
         );
-        return message.delete();
     } catch (e) {
         return channel.send({ embed: errorEmbed(e.toString()) });
     }

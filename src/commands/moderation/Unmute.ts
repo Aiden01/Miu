@@ -23,8 +23,7 @@ export default async function run(
 
     try {
         await unMuteUser(toUnmute, guild);
-        await channel.send(`<@${toUnmute.id}> has been unmuted`);
-        return message.delete();
+        return channel.send(`<@${toUnmute.id}> has been unmuted`);
     } catch (e) {
         return channel.send({ embed: errorEmbed(e.toString()) });
     }

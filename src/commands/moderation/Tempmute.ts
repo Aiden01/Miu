@@ -37,8 +37,9 @@ export default async function run(
         const parsedTime = await parseTime(time);
         await muteUser(toMute, guild, reason, author);
         scheduleCb(parsedTime, () => unMuteUser(toMute, guild));
-        await channel.send(`<@${toMute.id}> has been muted for: **${reason}**`);
-        return message.delete();
+        return channel.send(
+            `<@${toMute.id}> has been muted for: **${reason}**`
+        );
     } catch (e) {
         return channel.send({ embed: errorEmbed(e.toString()) });
     }

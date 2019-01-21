@@ -24,9 +24,8 @@ export default async function run(
     }
 
     await channel.bulkDelete(nb);
-    log('Messages deleted', config.color, guild, {
+    return log('Messages deleted', config.color, guild, {
         Amount: nb,
         Moderator: `<@${author.id}>`,
     });
-    return msg.delete();
 }
