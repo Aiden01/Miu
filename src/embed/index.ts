@@ -121,3 +121,10 @@ export function logEmbed(
     }
     return embed;
 }
+
+export function badWordsList(color: string, badWords: string[]): RichEmbed {
+    return new RichEmbed()
+        .setTitle('List of bad words on this server')
+        .setColor(color)
+        .setDescription(badWords.join(', '));
+}

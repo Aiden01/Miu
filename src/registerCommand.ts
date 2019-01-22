@@ -48,6 +48,12 @@ function registerFeaturesModule() {
             name: 'addbadwords',
             permissions: ['MANAGE_GUILD'],
         },
+        {
+            description: 'Get the list of bad words on this server',
+            handler: require('./commands/features/ListBadWords').default,
+            name: 'listbadwords',
+            permissions: ['MANAGE_GUILD'],
+        },
     ];
 }
 
