@@ -35,3 +35,17 @@ export async function addBadWord(serverId: string, word: string): Promise<any> {
             }
     }`);
 }
+
+export async function removeBadWord(
+    serverId: string,
+    word: string
+): Promise<any> {
+    return fetchApi(`
+        mutation delete_bad_words {
+            delete_bad_words(
+                where: { word: { _eq: "${word}" }, serverId: { _eq: "${serverId}" } }
+            ) {
+                affected_rows
+            }
+    }`);
+}

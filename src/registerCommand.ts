@@ -49,6 +49,14 @@ function registerFeaturesModule() {
             permissions: ['MANAGE_GUILD'],
         },
         {
+            argsName: ['Words'],
+            description: 'Remove on or more bad words',
+            handler: require('./commands/features/RemoveBadWords').default,
+            minArgs: 1,
+            name: 'removebadwords',
+            permissions: ['MANAGE_GUILD'],
+        },
+        {
             description: 'Get the list of bad words on this server',
             handler: require('./commands/features/ListBadWords').default,
             name: 'listbadwords',
