@@ -25,10 +25,11 @@ export function getRole(guild: Guild, roleName: string): Promise<Role> {
 
 export function parseTime(t: string): Promise<number> {
     const str = t[t.length - 1];
-    const validStr = ['d', 's', 'h'];
+    const validStr = ['d', 's', 'h', 'm'];
     const matches: any = {
         d: 60 * 60 * 24,
         h: 60 * 60,
+        m: 60,
         s: 1,
     };
 

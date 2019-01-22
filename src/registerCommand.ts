@@ -27,7 +27,7 @@ function registerFeaturesModule() {
         {
             argsName: ['Features'],
             description: 'Enable one or more features',
-            handler: require('./commands/moderation/EnableFeature').default,
+            handler: require('./commands/features/EnableFeature').default,
             minArgs: 1,
             name: 'enablefeature',
             permissions: ['MANAGE_GUILD'],
@@ -35,7 +35,7 @@ function registerFeaturesModule() {
         {
             argsName: ['Features'],
             description: 'Disable one or more features',
-            handler: require('./commands/moderation/DisableFeature').default,
+            handler: require('./commands/features/DisableFeature').default,
             minArgs: 1,
             name: 'disablefeature',
             permissions: ['MANAGE_GUILD'],
@@ -43,7 +43,7 @@ function registerFeaturesModule() {
         {
             argsName: ['Words'],
             description: 'Add one or more bad words',
-            handler: require('./commands/moderation/AddBadWords').default,
+            handler: require('./commands/features/AddBadWords').default,
             minArgs: 1,
             name: 'addbadwords',
             permissions: ['MANAGE_GUILD'],
