@@ -1,4 +1,4 @@
-import levenshteinDistance from '@extra-string/levenshtein-distance';
+import Levenshtein from 'levenshtein';
 import { flatArray } from '.';
 import ICommand from '../interfaces/ICommand';
 
@@ -24,7 +24,7 @@ export function getRecommendedCommand(
 
     const distances = new Map();
     filtered.forEach(({ name }) => {
-        distances.set(levenshteinDistance(name, actual), name);
+        distances.set(new Levenshtein(name, actual).distance, name);
     });
 
     const recommended = Math.min(...Array.from(distances.keys()));
