@@ -2,6 +2,7 @@ import { Client, Guild, Message, PermissionResolvable } from 'discord.js';
 import ICommand from './interfaces/ICommand';
 import IConfig from './interfaces/IConfig';
 import helpService from './services/HelpService';
+import { flatArray } from './utils';
 import { getCommand, parseMessage } from './utils/commands';
 
 export class Bot extends Client {
@@ -12,7 +13,11 @@ export class Bot extends Client {
         quoteApiEndpoint: '',
     };
     public modules: Map<string, ICommand[]> = new Map();
-    private cmdNotFoundHandler?: (message: Message) => void;
+    private cmdNotFoundHandler?: (
+        message: Message,
+        command: string,
+        commands: ICommand[]
+    ) => void;
     private notEnoughArgs?: (
         message: Message,
         expected: number,
@@ -60,7 +65,13 @@ export class Bot extends Client {
     /**
      * @description Fired when the command is not found
      */
-    public onCommandNotFound(handler: (message: Message) => void): Bot {
+    public onCommandNotFound(
+        handler: (
+            message: Message,
+            command: string,
+            commands: ICommand[]
+        ) => void
+    ): Bot {
         this.cmdNotFoundHandler = handler;
         return this;
     }
@@ -113,7 +124,11 @@ export class Bot extends Client {
                 this.handleCommand(command, args, message);
             } else {
                 if (this.cmdNotFoundHandler) {
-                    this.cmdNotFoundHandler(message);
+                    this.cmdNotFoundHandler(
+                        message,
+                        commandName,
+                        flatArray([...this.modules.values()])
+                    );
                 }
             }
         }
