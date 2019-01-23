@@ -62,6 +62,14 @@ function registerFeaturesModule() {
             name: 'listbadwords',
             permissions: ['MANAGE_GUILD'],
         },
+        {
+            argsName: ['Channel'],
+            description: 'Set the logs channel',
+            handler: require('./commands/features/SetLogsChannel').default,
+            name: 'setlogschannel',
+            numArgs: 1,
+            permissions: ['MANAGE_GUILD'],
+        },
     ];
 }
 

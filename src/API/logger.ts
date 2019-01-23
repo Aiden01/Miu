@@ -40,3 +40,16 @@ export async function log(
             .catch(console.error);
     }
 }
+
+export function setLogsChannel(
+    guildId: string,
+    channelId: string
+): Promise<any> {
+    return fetchApi(`
+        mutation update_servers {
+            update_servers(where: {serverId: {_eq: "${guildId}"}}, _set: {logs_channel: "${channelId}"}) {
+                affected_rows
+            }
+        }
+    `);
+}
