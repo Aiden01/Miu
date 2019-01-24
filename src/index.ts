@@ -10,6 +10,8 @@ const config = {
     ownerId: '337364150080503809',
     prefix: '~~',
     quoteApiEndpoint: 'http://quotes.rest/qod.json',
+    reportsChannelId: '538031454857330698',
+    supportServerId: '538029353334734858',
 };
 
 const bot: Bot = new Bot()

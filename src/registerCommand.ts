@@ -19,6 +19,14 @@ function registerUtilityModule() {
             handler: require('./commands/utility/About').default,
             name: 'about',
         },
+        {
+            argsName: ['Issue'],
+            description: 'Report an issue with the bot',
+            handler: require('./commands/utility/Report').default,
+            minArgs: 1,
+            name: 'report',
+            permissions: ['MANAGE_CHANNELS'],
+        },
     ];
 }
 

@@ -128,3 +128,17 @@ export function badWordsList(color: string, badWords: string[]): RichEmbed {
         .setColor(color)
         .setDescription(badWords.join(', '));
 }
+
+export function issueEmbed(
+    issue: string,
+    { username, id }: User,
+    invite: string,
+    color: string
+): RichEmbed {
+    return new RichEmbed()
+        .setColor(color)
+        .setTitle(`New issue reported by ${username}`)
+        .addField('Issue', issue)
+        .addField('User', `<@${id}>`)
+        .addField("Server's invite", invite);
+}

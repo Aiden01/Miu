@@ -3,4 +3,6 @@ export default interface IConfig {
     color: string;
     ownerId: string;
     quoteApiEndpoint: string;
+    supportServerId: string;
+    reportsChannelId: string;
 }

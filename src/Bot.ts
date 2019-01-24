@@ -11,6 +11,8 @@ export class Bot extends Client {
         ownerId: '',
         prefix: '~~',
         quoteApiEndpoint: '',
+        reportsChannelId: '',
+        supportServerId: '',
     };
     public modules: Map<string, ICommand[]> = new Map();
     private cmdNotFoundHandler?: (
