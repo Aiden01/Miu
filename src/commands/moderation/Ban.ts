@@ -1,10 +1,11 @@
 import { GuildMember, Message } from 'discord.js';
+import { log } from '../../API/logger';
 import { Bot } from '../../Bot';
 import { confirmationEmbed, errorEmbed } from '../../embed';
 import { isAdmin } from '../../utils';
 
 export default async function run(
-    { config }: Bot,
+    { config: { color } }: Bot,
     message: Message,
     [, ...rest]: string[]
 ): Promise<any> {
@@ -28,11 +29,16 @@ export default async function run(
             embed: confirmationEmbed(
                 'You have been banned',
                 reason,
-                config.color,
+                color,
                 author
             ),
         });
         await toBan.ban(reason);
+        log('Member banned', color, guild, {
+            Member: `<@${toBan.id}>`,
+            Moderator: `<@${member.id}>`,
+            Reason: reason,
+        });
         return channel.send(
             `<@${toBan.id}> has been banned for: **${reason}**`
         );

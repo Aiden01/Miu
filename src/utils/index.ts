@@ -1,4 +1,4 @@
-import { Guild, GuildMember, Role } from 'discord.js';
+import { Guild, GuildMember, Role, User } from 'discord.js';
 
 export function isAdmin(member: GuildMember) {
     return member.hasPermission('BAN_MEMBERS');
