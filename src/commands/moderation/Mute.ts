@@ -1,11 +1,12 @@
 import { GuildMember, Message } from 'discord.js';
+import { log } from '../../API/logger';
 import { Bot } from '../../Bot';
 import { confirmationEmbed, errorEmbed } from '../../embed';
 import { alreadyMuted, getRole, isAdmin } from '../../utils';
 import { muteUser } from '../../utils/mute';
 
 export default async function run(
-    { config }: Bot,
+    { config: { color } }: Bot,
     message: Message,
     [, ...rest]: string[]
 ): Promise<any> {
@@ -29,6 +30,11 @@ export default async function run(
 
     try {
         await muteUser(toMute, guild, reason, author);
+        log('Member muted', color, guild, {
+            Member: `<@${toMute.id}>`,
+            Moderator: `<@${member.id}>`,
+            Reason: reason,
+        });
         return channel.send(
             `<@${toMute.id}> has been muted for: **${reason}**`
         );

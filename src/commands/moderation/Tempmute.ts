@@ -1,4 +1,5 @@
 import { GuildMember, Message } from 'discord.js';
+import { log } from '../../API/logger';
 import { Bot } from '../../Bot';
 import { confirmationEmbed, errorEmbed } from '../../embed';
 import {
@@ -11,7 +12,7 @@ import {
 import { muteUser, unMuteUser } from '../../utils/mute';
 
 export default async function run(
-    _: Bot,
+    { config: { color } }: Bot,
     message: Message,
     [, time, ...rest]: string[]
 ): Promise<any> {
@@ -36,6 +37,11 @@ export default async function run(
     try {
         const parsedTime = await parseTime(time);
         await muteUser(toMute, guild, reason, author);
+        log('Member muted', color, guild, {
+            Member: `<@${toMute.id}>`,
+            Moderator: `<@${member.id}>`,
+            Reason: reason,
+        });
         scheduleCb(parsedTime, () => unMuteUser(toMute, guild));
         return channel.send(
             `<@${toMute.id}> has been muted for: **${reason}**`
