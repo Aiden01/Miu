@@ -49,3 +49,24 @@ export function parseTime(t: string): Promise<number> {
 export function scheduleCb(time: number, cb: any) {
     setTimeout(cb, time);
 }
+
+export function humanReadableTime(ms: number): string {
+    const date = new Date(ms);
+    if (date.getDay() === 0) {
+        if (date.getHours() === 0) {
+            if (date.getMinutes() === 0) {
+                if (date.getSeconds() === 0) {
+                    return 'Cannot resolve time';
+                } else {
+                    return `${date.getMinutes()} second(s)`;
+                }
+            } else {
+                return `${date.getMinutes()} minute(s)`;
+            }
+        } else {
+            return `${date.getHours()} hour(s)`;
+        }
+    } else {
+        return `${date.getDay()} day(s)`;
+    }
+}

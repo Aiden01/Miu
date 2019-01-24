@@ -5,6 +5,7 @@ import { confirmationEmbed, errorEmbed } from '../../embed';
 import {
     alreadyMuted,
     getRole,
+    humanReadableTime,
     isAdmin,
     parseTime,
     scheduleCb,
@@ -41,10 +42,13 @@ export default async function run(
             Member: `<@${toMute.id}>`,
             Moderator: `<@${member.id}>`,
             Reason: reason,
+            Time: humanReadableTime(Math.floor(parsedTime / 1000)),
         });
         scheduleCb(parsedTime, () => unMuteUser(toMute, guild));
         return channel.send(
-            `<@${toMute.id}> has been muted for: **${reason}**`
+            `<@${toMute.id}> has been muted for ${humanReadableTime(
+                Math.floor(parsedTime / 1000)
+            )} because: **${reason}**`
         );
     } catch (e) {
         return channel.send({ embed: errorEmbed(e.toString()) });
