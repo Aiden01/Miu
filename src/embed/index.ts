@@ -100,6 +100,7 @@ export function aboutEmbed(
             '[Invite](https://discordapp.com/oauth2/authorize?client_id=535082208667369482&scope=bot&permissions=2146958847)',
             true
         )
+        .addField('Official server', '[Join](https://discord.gg/V9n936A)', true)
         .addField('Server count', guilds.size, true)
         .addField(
             'Command count',
