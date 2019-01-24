@@ -12,20 +12,27 @@ A Discord bot that helps you manage your servers, but also includes some fun com
     - Ban
     - Kick
     - Mute
+    - Tempmute
     - Unmute
     - Nick
     - Nuke
-    - DisableFeature
-    - EnableFeature
-    - Addbadwords
+    - Warn
 * Misc
     - Ping
     - Lmgtfy
     - Pfp
     - Rps
+    - Quote
 * Utility
     - Serverinfo
     - About
+* Features
+    - AddBadWords
+    - RemoveBadWords
+    - ListBadWords
+    - EnableFeature
+    - DisableFeature
+    - SetLogsChannel
 
-## More details/Invite MiuBot to your server
-> Coming soon!
+## Invite MiuBot to your server
+[Click here](https://discordapp.com/oauth2/authorize?client_id=535082208667369482&scope=bot&permissions=2146958847)
