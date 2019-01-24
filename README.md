@@ -1,6 +1,8 @@
 # MiuBot 🤖
 A Discord bot that helps you manage your servers, but also includes some fun commands.
 
+[Support](https://discord.gg/8WmEVV3)
+
 <img src="https://forthebadge.com/images/badges/built-with-love.svg" align="center">
 
 
@@ -36,3 +38,6 @@ A Discord bot that helps you manage your servers, but also includes some fun com
 
 ## Invite MiuBot to your server
 [Click here](https://discordapp.com/oauth2/authorize?client_id=535082208667369482&scope=bot&permissions=2146958847)
+
+## Join our discord server
+[Join](https://discord.gg/8WmEVV3)
