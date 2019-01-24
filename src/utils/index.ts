@@ -50,23 +50,22 @@ export function scheduleCb(time: number, cb: any) {
     setTimeout(cb, time);
 }
 
-export function humanReadableTime(ms: number): string {
-    const date = new Date(ms);
-    if (date.getDay() === 0) {
-        if (date.getHours() === 0) {
-            if (date.getMinutes() === 0) {
-                if (date.getSeconds() === 0) {
-                    return 'Cannot resolve time';
-                } else {
-                    return `${date.getMinutes()} second(s)`;
-                }
-            } else {
-                return `${date.getMinutes()} minute(s)`;
-            }
-        } else {
-            return `${date.getHours()} hour(s)`;
-        }
+export function humanReadableTime(seconds: number): string {
+    const secondsOneDay = 60 * 60 * 24;
+    const secondsOneHour = 60 * 60;
+    const secondsOneMinute = 60;
+
+    if (seconds >= secondsOneDay) {
+        return `${Math.floor(seconds / secondsOneDay)} day(s)`;
     } else {
-        return `${date.getDay()} day(s)`;
+        if (seconds >= secondsOneHour) {
+            return `${Math.floor(seconds / secondsOneHour)} hour(s)`;
+        } else {
+            if (seconds >= secondsOneMinute) {
+                return `${Math.floor(seconds / secondsOneMinute)} minute(s)`;
+            } else {
+                return `${seconds} second(s)`;
+            }
+        }
     }
 }
