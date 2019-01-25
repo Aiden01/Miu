@@ -27,6 +27,12 @@ function registerUtilityModule() {
             name: 'report',
             permissions: ['MANAGE_CHANNELS'],
         },
+        {
+            description:
+                'Get a list the the servers that the bot is currently in',
+            handler: require('./commands/utility/Serverslist').default,
+            name: 'serverslist',
+        },
     ];
 }
 

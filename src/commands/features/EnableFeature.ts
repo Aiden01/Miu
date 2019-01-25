@@ -16,7 +16,6 @@ export default async function run(
         for (const feature of features) {
             await enableOrDisableFeature(feature, guild.id);
         }
-
         return confirmationMessage.edit('Features enabled :white_check_mark:');
     } catch (e) {
         return confirmationMessage.edit({ embed: errorEmbed(e.toString()) });

@@ -1,4 +1,4 @@
-import { Guild, RichEmbed, User } from 'discord.js';
+import { Collection, Guild, RichEmbed, User } from 'discord.js';
 import { Bot } from '../Bot';
 import { flatArray } from '../utils';
 
@@ -142,4 +142,19 @@ export function issueEmbed(
         .addField('Issue', issue)
         .addField('User', `<@${id}>`)
         .addField("Server's invite", invite);
+}
+
+export function serversList(
+    guilds: Collection<string, Guild>,
+    color: string
+): RichEmbed {
+    const embed = new RichEmbed()
+        .setTitle(`Miu is currently in ${guilds.size} servers.`)
+        .setColor(color);
+
+    for (const { name, memberCount } of [...guilds.values()]) {
+        embed.addField(name, `${memberCount} members`, true);
+    }
+
+    return embed;
 }
