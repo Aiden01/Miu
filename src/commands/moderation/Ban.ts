@@ -19,9 +19,7 @@ export default async function run(
     const toBan: GuildMember = guild.member(mentions.users.first());
     if (isAdmin(toBan) || toBan === member || !toBan) {
         return channel.send({
-            embed: errorEmbed(
-                'Cannot ban this user, either because he is already muted nor he is a moderator.'
-            ),
+            embed: errorEmbed('Cannot ban this user.'),
         });
     }
     try {

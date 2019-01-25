@@ -18,9 +18,7 @@ export default async function run(
 
     const toKick: GuildMember = guild.member(mentions.users.first());
     if (isAdmin(toKick) || toKick === member || !toKick) {
-        return channel.send(
-            'Cannot kick this user, either because he nor already muted or he is a moderator.'
-        );
+        return channel.send('Cannot kick this user.');
     }
     try {
         await toKick.send({
