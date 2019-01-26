@@ -1,5 +1,6 @@
 import { GuildMember, Message, PermissionResolvable } from 'discord.js';
 import { Bot } from '../Bot';
+import { errorEmbed } from '../embed';
 import ICommand from '../interfaces/ICommand';
 
 /**
@@ -38,17 +39,28 @@ export function handleCommand(
     message: Message,
     client: Bot
 ): void {
-    const { member } = message;
-    if (!hasEnoughArgs(command, args) && client.notEnoughArgs) {
-        const expected = command.numArgs || command.minArgs || command.maxArgs;
-        client.notEnoughArgs(message, expected as number, args.length);
-    } else if (
-        command.permissions &&
-        !hasEnoughPermissions(command.permissions, member) &&
-        client.lackOfPermissionsHandler
-    ) {
-        client.lackOfPermissionsHandler(message, command);
+    const { member, channel } = message;
+
+    // check if the command is enabled in private message
+    if (channel.type === 'dm' && command.notEnabledInDm) {
+        channel.send({
+            embed: errorEmbed(
+                'This command is not enabled in private messages'
+            ),
+        });
     } else {
-        command.handler(client, message, args).catch(console.error);
+        if (!hasEnoughArgs(command, args) && client.notEnoughArgs) {
+            const expected =
+                command.numArgs || command.minArgs || command.maxArgs;
+            client.notEnoughArgs(message, expected as number, args.length);
+        } else if (
+            command.permissions &&
+            !hasEnoughPermissions(command.permissions, member) &&
+            client.lackOfPermissionsHandler
+        ) {
+            client.lackOfPermissionsHandler(message, command);
+        } else {
+            command.handler(client, message, args).catch(console.error);
+        }
     }
 }

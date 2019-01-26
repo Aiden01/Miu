@@ -13,6 +13,7 @@ function registerUtilityModule() {
             description: 'Get general information about the server',
             handler: require('./commands/utility/ServerInfo').default,
             name: 'serverinfo',
+            notEnabledInDm: true,
         },
         {
             description: 'Get information about the bot',
@@ -25,6 +26,7 @@ function registerUtilityModule() {
             handler: require('./commands/utility/Report').default,
             minArgs: 1,
             name: 'report',
+            notEnabledInDm: true,
             permissions: ['MANAGE_CHANNELS'],
         },
         {
@@ -44,6 +46,7 @@ function registerFeaturesModule() {
             handler: require('./commands/features/EnableFeature').default,
             minArgs: 1,
             name: 'enablefeature',
+            notEnabledInDm: true,
             permissions: ['MANAGE_GUILD'],
         },
         {
@@ -52,6 +55,7 @@ function registerFeaturesModule() {
             handler: require('./commands/features/DisableFeature').default,
             minArgs: 1,
             name: 'disablefeature',
+            notEnabledInDm: true,
             permissions: ['MANAGE_GUILD'],
         },
         {
@@ -60,6 +64,7 @@ function registerFeaturesModule() {
             handler: require('./commands/features/AddBadWords').default,
             minArgs: 1,
             name: 'addbadwords',
+            notEnabledInDm: true,
             permissions: ['MANAGE_GUILD'],
         },
         {
@@ -68,12 +73,14 @@ function registerFeaturesModule() {
             handler: require('./commands/features/RemoveBadWords').default,
             minArgs: 1,
             name: 'removebadwords',
+            notEnabledInDm: true,
             permissions: ['MANAGE_GUILD'],
         },
         {
             description: 'Get the list of bad words on this server',
             handler: require('./commands/features/ListBadWords').default,
             name: 'listbadwords',
+            notEnabledInDm: true,
             permissions: ['MANAGE_GUILD'],
         },
         {
@@ -81,6 +88,7 @@ function registerFeaturesModule() {
             description: 'Set the logs channel',
             handler: require('./commands/features/SetLogsChannel').default,
             name: 'setlogschannel',
+            notEnabledInDm: true,
             numArgs: 1,
             permissions: ['MANAGE_GUILD'],
         },
@@ -130,6 +138,7 @@ function registerModModule() {
             description: 'Delete x message(s)',
             handler: require('./commands/moderation/Nuke').default,
             name: 'nuke',
+            notEnabledInDm: true,
             numArgs: 1,
             permissions: ['manage_messages'],
         },
@@ -139,6 +148,7 @@ function registerModModule() {
             handler: require('./commands/moderation/Mute').default,
             minArgs: 1,
             name: 'mute',
+            notEnabledInDm: true,
             permissions: ['manage_messages'],
         },
         {
@@ -147,6 +157,7 @@ function registerModModule() {
             handler: require('./commands/moderation/Tempmute').default,
             minArgs: 2,
             name: 'tempmute',
+            notEnabledInDm: true,
             permissions: ['manage_messages'],
         },
         {
@@ -154,6 +165,7 @@ function registerModModule() {
             description: 'Unmute a member',
             handler: require('./commands/moderation/Unmute').default,
             name: 'unmute',
+            notEnabledInDm: true,
             numArgs: 1,
             permissions: ['manage_messages'],
         },
@@ -163,6 +175,7 @@ function registerModModule() {
             handler: require('./commands/moderation/Kick').default,
             minArgs: 1,
             name: 'kick',
+            notEnabledInDm: true,
             permissions: ['KICK_MEMBERS'],
         },
         {
@@ -171,6 +184,7 @@ function registerModModule() {
             handler: require('./commands/moderation/Nick').default,
             minArgs: 2,
             name: 'nick',
+            notEnabledInDm: true,
             permissions: ['MANAGE_NICKNAMES'],
         },
         {
@@ -179,6 +193,7 @@ function registerModModule() {
             handler: require('./commands/moderation/Ban').default,
             minArgs: 1,
             name: 'ban',
+            notEnabledInDm: true,
             permissions: ['BAN_MEMBERS'],
         },
         {
@@ -187,6 +202,7 @@ function registerModModule() {
             handler: require('./commands/moderation/Warn').default,
             minArgs: 2,
             name: 'warn',
+            notEnabledInDm: true,
             permissions: ['manage_messages'],
         },
     ];
