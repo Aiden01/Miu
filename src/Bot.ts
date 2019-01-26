@@ -21,7 +21,8 @@ export class Bot extends Client {
     public notEnoughArgs?: (
         message: Message,
         expected: number,
-        got: number
+        got: number,
+        command: ICommand
     ) => void;
     public lackOfPermissionsHandler?: (
         message: Message,
@@ -87,7 +88,12 @@ export class Bot extends Client {
     }
 
     public onNotEnoughArgs(
-        handler: (message: Message, expected: number, got: number) => void
+        handler: (
+            message: Message,
+            expected: number,
+            got: number,
+            command: ICommand
+        ) => void
     ): Bot {
         this.notEnoughArgs = handler;
         return this;

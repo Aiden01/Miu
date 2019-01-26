@@ -1,16 +1,22 @@
-import { Message } from 'discord.js';
-import { errorEmbed } from '../embed';
+import { Message, RichEmbed } from 'discord.js';
+import ICommand from '../interfaces/ICommand';
+import { commandHelp } from '../services/HelpService';
 
 export default function notEnoughArgs(
     { channel }: Message,
     expected: number,
-    got: number
+    got: number,
+    command: ICommand
 ) {
+    const embed = new RichEmbed()
+        .setColor('#d32f2f')
+        .setDescription(
+            `Not enough arguments, expected ${expected}, got ${got}`
+        );
+    commandHelp(command, embed);
     channel
         .send({
-            embed: errorEmbed(
-                `This command requires ${expected} argument(s), got ${got}`
-            ),
+            embed,
         })
         .catch(console.error);
 }

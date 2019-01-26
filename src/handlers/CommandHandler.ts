@@ -53,7 +53,12 @@ export function handleCommand(
         if (!hasEnoughArgs(command, args) && client.notEnoughArgs) {
             const expected =
                 command.numArgs || command.minArgs || command.maxArgs;
-            client.notEnoughArgs(message, expected as number, args.length);
+            client.notEnoughArgs(
+                message,
+                expected as number,
+                args.length,
+                command
+            );
         } else if (
             command.permissions &&
             !hasEnoughPermissions(command.permissions, member) &&

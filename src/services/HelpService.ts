@@ -57,11 +57,11 @@ function moduleHelp(module: ICommand[], moduleName: string, embed: RichEmbed) {
 /**
  * Returns help embed for a command
  */
-function commandHelp(command: ICommand, embed: RichEmbed) {
+export function commandHelp(command: ICommand, embed: RichEmbed) {
     const { name, description, permissions, argsName, aliases } = command;
     embed
         .setTitle(`Command ${name}`)
-        .addField('Aliases', aliases.join(', '))
+        .addField('Aliases', aliases.length < 1 ? 'None' : aliases.join(', '))
         .addField('Description', description)
         .addField(
             'Required permissions',
