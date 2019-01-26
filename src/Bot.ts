@@ -1,4 +1,5 @@
 import { Client, Guild, Message, PermissionResolvable } from 'discord.js';
+import { handleCommand } from './handlers/CommandHandler';
 import ICommand from './interfaces/ICommand';
 import IConfig from './interfaces/IConfig';
 import helpService from './services/HelpService';
@@ -15,19 +16,19 @@ export class Bot extends Client {
         supportServerId: '',
     };
     public modules: Map<string, ICommand[]> = new Map();
-    private cmdNotFoundHandler?: (
-        message: Message,
-        command: string,
-        commands: ICommand[]
-    ) => void;
-    private notEnoughArgs?: (
+    public notEnoughArgs?: (
         message: Message,
         expected: number,
         got: number
     ) => void;
-    private lackOfPermissionsHandler?: (
+    public lackOfPermissionsHandler?: (
         message: Message,
         command: ICommand
+    ) => void;
+    private cmdNotFoundHandler?: (
+        message: Message,
+        command: string,
+        commands: ICommand[]
     ) => void;
     private helpEnabled: boolean = false;
 
@@ -123,7 +124,7 @@ export class Bot extends Client {
             );
         } else {
             if (command) {
-                this.handleCommand(command, args, message);
+                handleCommand(command, args, message, this);
             } else {
                 if (this.cmdNotFoundHandler) {
                     this.cmdNotFoundHandler(
@@ -132,50 +133,6 @@ export class Bot extends Client {
                         flatArray([...this.modules.values()])
                     );
                 }
-            }
-        }
-    }
-
-    /**
-     * @description Handles a new command
-     */
-    private handleCommand(
-        command: ICommand,
-        args: string[],
-        message: Message
-    ): void {
-        // Checks if the arguments are correctly passed
-        if (command.maxArgs && args.length > command.maxArgs) {
-            if (this.notEnoughArgs) {
-                this.notEnoughArgs(message, command.maxArgs, args.length);
-            }
-        } else if (command.minArgs && args.length < command.minArgs) {
-            if (this.notEnoughArgs) {
-                this.notEnoughArgs(message, command.minArgs, args.length);
-            }
-        } else if (command.numArgs && args.length !== command.numArgs) {
-            if (this.notEnoughArgs) {
-                this.notEnoughArgs(message, command.numArgs, args.length);
-            }
-        } else {
-            if (command.permissions) {
-                for (const permission of command.permissions) {
-                    if (
-                        !message.member.hasPermission(
-                            permission.toUpperCase() as PermissionResolvable
-                        )
-                    ) {
-                        if (this.lackOfPermissionsHandler) {
-                            this.lackOfPermissionsHandler(message, command);
-                        }
-                    } else {
-                        command
-                            .handler(this, message, args)
-                            .catch(console.error);
-                    }
-                }
-            } else {
-                command.handler(this, message, args).catch(console.error);
             }
         }
     }
