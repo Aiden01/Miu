@@ -6,7 +6,7 @@ import NotEnoughArgs from './handlers/NotEnoughArgs';
 import registerCommand from './registerCommand';
 
 const config = {
-    color: '#524e8c',
+    color: '#29B6F6',
     ownerId: '337364150080503809',
     prefix: '~~',
     quoteApiEndpoint: 'http://quotes.rest/qod.json',

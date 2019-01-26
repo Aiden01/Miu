@@ -14,7 +14,7 @@ export async function muteUser(
         embed: confirmationEmbed(
             'You have been muted',
             reason,
-            '#524e8c',
+            '#29B6F6',
             moderator
         ),
     });
@@ -26,5 +26,5 @@ export async function unMuteUser(
 ): Promise<any> {
     const role = await getRole(guild, 'muted');
     await user.removeRole(role);
-    return user.send({ embed: logEmbed('You have been unmuted', '#524e8c') });
+    return user.send({ embed: logEmbed('You have been unmuted', '#29B6F6') });
 }

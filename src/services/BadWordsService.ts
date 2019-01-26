@@ -20,7 +20,7 @@ export default async function runService(message: Message): Promise<any> {
 
     if (containsBadWords) {
         message.delete();
-        log('Message deleted automatically', '#524e8c', guild, {
+        log('Message deleted automatically', '#29B6F6', guild, {
             Message: content,
             Reason: 'Bad words detected',
             User: `<@${author.id}>`,
