@@ -152,7 +152,12 @@ export function serversList(
         .setTitle(`Miu is currently in ${guilds.size} servers.`)
         .setColor(color);
 
-    for (const { name, memberCount } of [...guilds.values()]) {
+    const servers =
+        guilds.size > 25
+            ? [...guilds.values()].slice(0, 25)
+            : [...guilds.values()];
+
+    for (const { name, memberCount } of servers) {
         embed.addField(name, `${memberCount} members`, true);
     }
 
