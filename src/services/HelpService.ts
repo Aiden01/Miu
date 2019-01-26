@@ -35,7 +35,7 @@ export default function runService(
             helpEmbed.addField(name, commands.map(cmd => cmd.name).join(', '));
         }
         helpEmbed.addField(
-            'others (not a module)',
+            'other (not a module)',
             simpleCommands.map(({ name }) => name).join(', ')
         );
     }
@@ -58,9 +58,10 @@ function moduleHelp(module: ICommand[], moduleName: string, embed: RichEmbed) {
  * Returns help embed for a command
  */
 function commandHelp(command: ICommand, embed: RichEmbed) {
-    const { name, description, permissions, argsName } = command;
+    const { name, description, permissions, argsName, aliases } = command;
     embed
         .setTitle(`Command ${name}`)
+        .addField('Aliases', aliases.join(', '))
         .addField('Description', description)
         .addField(
             'Required permissions',

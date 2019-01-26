@@ -12,17 +12,20 @@ export default function registerCommand(bot: Bot) {
 function registerUtilityModule() {
     return [
         {
+            aliases: [],
             description: 'Get general information about the server',
             handler: require('./commands/utility/ServerInfo').default,
             name: 'serverinfo',
             notEnabledInDm: true,
         },
         {
+            aliases: [],
             description: 'Get information about the bot',
             handler: require('./commands/utility/About').default,
             name: 'about',
         },
         {
+            aliases: [],
             argsName: ['Issue'],
             description: 'Report an issue with the bot',
             handler: require('./commands/utility/Report').default,
@@ -32,6 +35,7 @@ function registerUtilityModule() {
             permissions: ['MANAGE_CHANNELS'],
         },
         {
+            aliases: ['list'],
             description:
                 'Get a list the the servers that the bot is currently in',
             handler: require('./commands/utility/Serverslist').default,
@@ -43,6 +47,7 @@ function registerUtilityModule() {
 function registerFeaturesModule() {
     return [
         {
+            aliases: ['ef'],
             argsName: ['Features'],
             description: 'Enable one or more features',
             handler: require('./commands/features/EnableFeature').default,
@@ -52,6 +57,7 @@ function registerFeaturesModule() {
             permissions: ['MANAGE_GUILD'],
         },
         {
+            aliases: ['df'],
             argsName: ['Features'],
             description: 'Disable one or more features',
             handler: require('./commands/features/DisableFeature').default,
@@ -61,6 +67,7 @@ function registerFeaturesModule() {
             permissions: ['MANAGE_GUILD'],
         },
         {
+            aliases: [],
             argsName: ['Words'],
             description: 'Add one or more bad words',
             handler: require('./commands/features/AddBadWords').default,
@@ -70,6 +77,7 @@ function registerFeaturesModule() {
             permissions: ['MANAGE_GUILD'],
         },
         {
+            aliases: [],
             argsName: ['Words'],
             description: 'Remove on or more bad words',
             handler: require('./commands/features/RemoveBadWords').default,
@@ -79,6 +87,7 @@ function registerFeaturesModule() {
             permissions: ['MANAGE_GUILD'],
         },
         {
+            aliases: ['lswords'],
             description: 'Get the list of bad words on this server',
             handler: require('./commands/features/ListBadWords').default,
             name: 'listbadwords',
@@ -86,6 +95,7 @@ function registerFeaturesModule() {
             permissions: ['MANAGE_GUILD'],
         },
         {
+            aliases: ['setlogs'],
             argsName: ['Channel'],
             description: 'Set the logs channel',
             handler: require('./commands/features/SetLogsChannel').default,
@@ -100,11 +110,13 @@ function registerFeaturesModule() {
 function registerMiscModule() {
     return [
         {
+            aliases: [],
             description: 'Get the ping of the bot',
             handler: require('./commands/misc/Ping').default,
             name: 'ping',
         },
         {
+            aliases: [],
             argsName: ['Query'],
             description: 'Send a link to lmgtfy',
             handler: require('./commands/misc/Lmgtfy').default,
@@ -112,6 +124,7 @@ function registerMiscModule() {
             name: 'lmgtfy',
         },
         {
+            aliases: [],
             argsName: ['Member'],
             description: 'Send the profile picture of a member',
             handler: require('./commands/misc/Pfp').default,
@@ -119,6 +132,7 @@ function registerMiscModule() {
             name: 'pfp',
         },
         {
+            aliases: [],
             argsName: ['Choice'],
             description: 'Play Rock-Paper-Scissors with the bot',
             handler: require('./commands/misc/Rps').default,
@@ -126,6 +140,7 @@ function registerMiscModule() {
             numArgs: 1,
         },
         {
+            aliases: [],
             description: 'Get the awesome quote of the day',
             handler: require('./commands/misc/Quote').default,
             name: 'quote',
@@ -136,6 +151,7 @@ function registerMiscModule() {
 function registerModModule() {
     return [
         {
+            aliases: ['purge'],
             argsName: ['Amount'],
             description: 'Delete x message(s)',
             handler: require('./commands/moderation/Nuke').default,
@@ -145,6 +161,7 @@ function registerModModule() {
             permissions: ['manage_messages'],
         },
         {
+            aliases: [],
             argsName: ['Member', 'Reason'],
             description: 'Mute a member',
             handler: require('./commands/moderation/Mute').default,
@@ -154,6 +171,7 @@ function registerModModule() {
             permissions: ['manage_messages'],
         },
         {
+            aliases: [],
             argsName: ['Member', 'Time', 'Reason'],
             description: 'Mute a member for a specific time',
             handler: require('./commands/moderation/Tempmute').default,
@@ -163,6 +181,7 @@ function registerModModule() {
             permissions: ['manage_messages'],
         },
         {
+            aliases: [],
             argsName: ['Member'],
             description: 'Unmute a member',
             handler: require('./commands/moderation/Unmute').default,
@@ -172,6 +191,7 @@ function registerModModule() {
             permissions: ['manage_messages'],
         },
         {
+            aliases: [],
             argsName: ['Member', 'Reason'],
             description: 'Kick a member',
             handler: require('./commands/moderation/Kick').default,
@@ -181,6 +201,7 @@ function registerModModule() {
             permissions: ['KICK_MEMBERS'],
         },
         {
+            aliases: ['rename'],
             argsName: ['Member', 'Nickname'],
             description: 'Rename someone',
             handler: require('./commands/moderation/Nick').default,
@@ -190,6 +211,7 @@ function registerModModule() {
             permissions: ['MANAGE_NICKNAMES'],
         },
         {
+            aliases: [],
             argsName: ['Member', 'Reason'],
             description: 'Ban a member',
             handler: require('./commands/moderation/Ban').default,
@@ -199,6 +221,7 @@ function registerModModule() {
             permissions: ['BAN_MEMBERS'],
         },
         {
+            aliases: [],
             argsName: ['Member', 'Message'],
             description: 'Warn a member',
             handler: require('./commands/moderation/Warn').default,

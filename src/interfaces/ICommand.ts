@@ -10,5 +10,6 @@ export default interface ICommand {
     argsName?: string[];
     permissions?: string[];
     notEnabledInDm?: boolean;
+    aliases: string[];
     handler: (ctx: Bot, message: Message, args: string[]) => Promise<any>;
 }

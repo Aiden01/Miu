@@ -13,7 +13,11 @@ export function getCommand(
     commandName: string
 ): ICommand {
     return flatArray([...modules.values()]).find(
-        cmd => cmd.name === commandName.toLowerCase()
+        cmd =>
+            cmd.name === commandName.toLowerCase() ||
+            cmd.aliases.some(
+                (a: string) => a.toLowerCase() === commandName.toLowerCase()
+            )
     );
 }
 

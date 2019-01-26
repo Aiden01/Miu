@@ -26,8 +26,8 @@ function hasEnoughPermissions(
     expectedPerms: string[],
     member: GuildMember
 ): boolean {
-    return expectedPerms.some(
-        p => !member.hasPermission(p.toUpperCase() as PermissionResolvable)
+    return expectedPerms.every(p =>
+        member.hasPermission(p.toUpperCase() as PermissionResolvable)
     );
 }
 
