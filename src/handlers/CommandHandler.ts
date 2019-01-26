@@ -8,11 +8,11 @@ import ISimpleCommand from '../interfaces/ISimpleCommand';
  * @description Check if the user passed enough arguments
  */
 function hasEnoughArgs(command: ICommand, args: string[]): boolean {
-    if (command.maxArgs && args.length > command.maxArgs) {
-        return false;
-    } else if (command.minArgs && args.length < command.minArgs) {
-        return false;
-    } else if (command.numArgs && args.length !== command.numArgs) {
+    if (
+        (command.maxArgs && args.length > command.maxArgs) ||
+        (command.minArgs && args.length < command.minArgs) ||
+        (command.numArgs && args.length !== command.numArgs)
+    ) {
         return false;
     } else {
         return true;
