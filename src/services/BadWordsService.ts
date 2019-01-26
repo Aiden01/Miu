@@ -25,8 +25,6 @@ export default async function runService(message: Message): Promise<any> {
             Reason: 'Bad words detected',
             User: `<@${author.id}>`,
         }).catch(console.error);
-        return message.reply(
-            'Your message has been deleted, no bad words please.'
-        );
+        return message.reply('Calm down, no swearing please.');
     }
 }
