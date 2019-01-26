@@ -3,7 +3,7 @@ import CmdNotFound from './handlers/CmdNotFound';
 import EventHandler from './handlers/EventHandler';
 import LackOfPermissionsHandler from './handlers/LackOfPermissions';
 import NotEnoughArgs from './handlers/NotEnoughArgs';
-import registerCommand from './registerCommand';
+import registerCommand from './registerCommands';
 
 const config = {
     color: '#29B6F6',

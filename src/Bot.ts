@@ -1,10 +1,11 @@
 import { Client, Guild, Message, PermissionResolvable } from 'discord.js';
-import { handleCommand } from './handlers/CommandHandler';
+import { handleCommand, handleSimpleCommand } from './handlers/CommandHandler';
 import ICommand from './interfaces/ICommand';
 import IConfig from './interfaces/IConfig';
+import ISimpleCommand from './interfaces/ISimpleCommand';
 import helpService from './services/HelpService';
 import { flatArray } from './utils';
-import { getCommand, parseMessage } from './utils/commands';
+import { getCommand, getSimpleCommand, parseMessage } from './utils/commands';
 
 export class Bot extends Client {
     public config: IConfig = {
@@ -16,6 +17,7 @@ export class Bot extends Client {
         supportServerId: '',
     };
     public modules: Map<string, ICommand[]> = new Map();
+    public simpleCommands: ISimpleCommand[] = [];
     public notEnoughArgs?: (
         message: Message,
         expected: number,
@@ -79,6 +81,11 @@ export class Bot extends Client {
         return this;
     }
 
+    public registerSimpleCommands(simpleCommands: ISimpleCommand[]): Bot {
+        this.simpleCommands = simpleCommands;
+        return this;
+    }
+
     public onNotEnoughArgs(
         handler: (message: Message, expected: number, got: number) => void
     ): Bot {
@@ -119,19 +126,36 @@ export class Bot extends Client {
 
         const command = getCommand(this.modules, commandName);
         if (commandName === 'help' && this.helpEnabled) {
-            helpService(this.modules, message, this.config, args).catch(
-                console.error
-            );
+            helpService(
+                this.modules,
+                this.simpleCommands,
+                message,
+                this.config,
+                args
+            ).catch(console.error);
         } else {
             if (command) {
                 handleCommand(command, args, message, this);
             } else {
-                if (this.cmdNotFoundHandler) {
-                    this.cmdNotFoundHandler(
-                        message,
-                        commandName,
-                        flatArray([...this.modules.values()])
+                const simpleCommand = getSimpleCommand(
+                    commandName,
+                    this.simpleCommands
+                );
+                if (simpleCommand) {
+                    handleSimpleCommand(message, simpleCommand).catch(
+                        console.error
                     );
+                } else {
+                    if (this.cmdNotFoundHandler) {
+                        this.cmdNotFoundHandler(
+                            message,
+                            commandName,
+                            flatArray([
+                                ...this.modules.values(),
+                                this.simpleCommands,
+                            ])
+                        );
+                    }
                 }
             }
         }

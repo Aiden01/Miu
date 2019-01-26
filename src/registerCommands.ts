@@ -1,7 +1,9 @@
 import { Bot } from './Bot';
+import simpleCommands from './registerSimpleCommands';
 
 export default function registerCommand(bot: Bot) {
-    bot.module('moderation', registerModModule)
+    bot.registerSimpleCommands(simpleCommands)
+        .module('moderation', registerModModule)
         .module('misc', registerMiscModule)
         .module('utility', registerUtilityModule)
         .module('features', registerFeaturesModule);

@@ -5,7 +5,7 @@ import { getRecommendedCommand } from '../utils/commands';
 export default function cmdNotFound(
     { channel }: Message,
     command: string,
-    commands: ICommand[]
+    commands: any[]
 ) {
     channel
         .send(

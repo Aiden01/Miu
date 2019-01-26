@@ -1,10 +1,12 @@
 import { Message, RichEmbed } from 'discord.js';
 import ICommand from '../interfaces/ICommand';
 import IConfig from '../interfaces/IConfig';
+import ISimpleCommand from '../interfaces/ISimpleCommand';
 import { getCommand } from '../utils/commands';
 
 export default function runService(
     modules: Map<string, ICommand[]>,
+    simpleCommands: ISimpleCommand[],
     { channel }: Message,
     config: IConfig,
     [query]: string[]
@@ -30,12 +32,12 @@ export default function runService(
             'Type ``~~help <module>`` to get more information about a module or a command ``~~help <command>``'
         );
         for (const [name, commands] of modules.entries()) {
-            helpEmbed.addField(
-                name,
-                commands.map(cmd => cmd.name).join(', '),
-                false
-            );
+            helpEmbed.addField(name, commands.map(cmd => cmd.name).join(', '));
         }
+        helpEmbed.addField(
+            'others (not a module)',
+            simpleCommands.map(({ name }) => name).join(', ')
+        );
     }
 
     return channel.send({ embed: helpEmbed });

@@ -2,6 +2,7 @@ import { GuildMember, Message, PermissionResolvable } from 'discord.js';
 import { Bot } from '../Bot';
 import { errorEmbed } from '../embed';
 import ICommand from '../interfaces/ICommand';
+import ISimpleCommand from '../interfaces/ISimpleCommand';
 
 /**
  * @description Check if the user passed enough arguments
@@ -63,4 +64,14 @@ export function handleCommand(
             command.handler(client, message, args).catch(console.error);
         }
     }
+}
+
+/**
+ * @description Handles a simple command
+ */
+export function handleSimpleCommand(
+    { channel }: Message,
+    command: ISimpleCommand
+): Promise<Message> {
+    return channel.send(command.response) as Promise<Message>;
 }
