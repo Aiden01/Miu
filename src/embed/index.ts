@@ -75,7 +75,7 @@ export function pfpEmbed(
 
 export function errorEmbed(error: string): RichEmbed {
     return new RichEmbed()
-        .setTitle('An error occurred')
+        .setTitle('Something went wrong 🙁')
         .setDescription(error)
         .setColor('#d32f2f');
 }
