@@ -19,6 +19,7 @@ export class Bot extends Client {
     public modules: Map<string, ICommand[]> = new Map();
     public simpleCommands: ISimpleCommand[] = [];
     public notEnoughArgs?: (
+        ctx: Bot,
         message: Message,
         expected: number,
         got: number,
@@ -89,6 +90,7 @@ export class Bot extends Client {
 
     public onNotEnoughArgs(
         handler: (
+            ctx: Bot,
             message: Message,
             expected: number,
             got: number,

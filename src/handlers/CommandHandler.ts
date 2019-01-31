@@ -54,6 +54,7 @@ export function handleCommand(
             const expected =
                 command.numArgs || command.minArgs || command.maxArgs;
             client.notEnoughArgs(
+                client,
                 message,
                 expected as number,
                 args.length,
