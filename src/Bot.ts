@@ -132,13 +132,7 @@ export class Bot extends Client {
 
         const command = getCommand(this.modules, commandName);
         if (commandName === 'help' && this.helpEnabled) {
-            helpService(
-                this.modules,
-                this.simpleCommands,
-                message,
-                this.config,
-                args
-            ).catch(console.error);
+            helpService(this, message, this.config, args).catch(console.error);
         } else {
             if (command) {
                 handleCommand(command, args, message, this);

@@ -1,12 +1,11 @@
 import { Message, RichEmbed } from 'discord.js';
+import { Bot } from '../Bot';
 import ICommand from '../interfaces/ICommand';
 import IConfig from '../interfaces/IConfig';
-import ISimpleCommand from '../interfaces/ISimpleCommand';
 import { getCommand } from '../utils/commands';
 
 export default function runService(
-    modules: Map<string, ICommand[]>,
-    simpleCommands: ISimpleCommand[],
+    { modules, simpleCommands, config: { prefix } }: Bot,
     { channel }: Message,
     config: IConfig,
     [query]: string[]
@@ -21,7 +20,7 @@ export default function runService(
             if (!command) {
                 return channel.send(`Module or command ${query} not found`);
             } else {
-                commandHelp(command, helpEmbed);
+                commandHelp(prefix, command, helpEmbed);
             }
         } else {
             moduleHelp(module, query, helpEmbed);
@@ -57,12 +56,24 @@ function moduleHelp(module: ICommand[], moduleName: string, embed: RichEmbed) {
 /**
  * Returns help embed for a command
  */
-export function commandHelp(command: ICommand, embed: RichEmbed) {
-    const { name, description, permissions, argsName, aliases } = command;
+export function commandHelp(
+    prefix: string,
+    command: ICommand,
+    embed: RichEmbed
+) {
+    const {
+        name,
+        description,
+        permissions,
+        argsName,
+        aliases,
+        example,
+    } = command;
     embed
         .setTitle(`Command ${name}`)
-        .addField('Aliases', aliases.length < 1 ? 'None' : aliases.join(', '))
         .addField('Description', description)
+        .addField('Aliases', aliases.length < 1 ? 'None' : aliases.join(', '))
+        .addField('Example', example ? prefix + example : 'None')
         .addField(
             'Required permissions',
             permissions ? permissions.join(', ') : 'None'

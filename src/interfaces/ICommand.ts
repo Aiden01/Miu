@@ -11,5 +11,6 @@ export default interface ICommand {
     permissions?: string[];
     notEnabledInDm?: boolean;
     aliases: string[];
+    example?: string;
     handler: (ctx: Bot, message: Message, args: string[]) => Promise<any>;
 }
