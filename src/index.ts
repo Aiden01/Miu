@@ -20,7 +20,12 @@ const bot: Bot = new Bot()
     .lackOfPermissions(LackOfPermissionsHandler)
     .onNotEnoughArgs(NotEnoughArgs)
     .onCommandNotFound(CmdNotFound)
-    .enableHelp(true);
+    .enableHelp(true)
+    .verifyEnvVars([
+        'BOT_TOKEN',
+        'HASURA_GRAPHQL_ACCESS_KEY',
+        'GOOGLE_BOOKS_KEY',
+    ]);
 
 // commands
 registerCommand(bot);

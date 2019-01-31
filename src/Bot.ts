@@ -83,6 +83,22 @@ export class Bot extends Client {
         return this;
     }
 
+    public verifyEnvVars(envVars: string[]): Bot {
+        const missingVars: string[] = [];
+        for (const env of envVars) {
+            if (!process.env.hasOwnProperty(env)) {
+                missingVars.push(env);
+            }
+        }
+        console.log(
+            `Missing the follwing environnement variables: \n - ${missingVars.join(
+                '\n - '
+            )}`
+        );
+        process.exit(-1);
+        return this;
+    }
+
     public registerSimpleCommands(simpleCommands: ISimpleCommand[]): Bot {
         this.simpleCommands = simpleCommands;
         return this;
