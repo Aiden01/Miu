@@ -90,12 +90,14 @@ export class Bot extends Client {
                 missingVars.push(env);
             }
         }
-        console.log(
-            `Missing the follwing environnement variables: \n - ${missingVars.join(
-                '\n - '
-            )}`
-        );
-        process.exit(-1);
+        if (missingVars.length >= 1) {
+            console.log(
+                `Missing the follwing environnement variables: \n - ${missingVars.join(
+                    '\n - '
+                )}`
+            );
+            process.exit(-1);
+        }
         return this;
     }
 

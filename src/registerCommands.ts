@@ -154,6 +154,15 @@ function registerMiscModule() {
             handler: require('./commands/misc/Quote').default,
             name: 'quote',
         },
+        {
+            aliases: ['searchbook', 'novel'],
+            argsName: ['Query'],
+            description: 'Get information about a book',
+            example: 'book an awesome book',
+            handler: require('./commands/misc/Book').default,
+            minArgs: 1,
+            name: 'book',
+        },
     ];
 }
 

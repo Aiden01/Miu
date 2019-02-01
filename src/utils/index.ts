@@ -69,3 +69,43 @@ export function humanReadableTime(seconds: number): string {
         }
     }
 }
+
+export const booksReactionEmojis = [
+    '540878358041329675',
+    '540877838769979393',
+    '540878007384932352',
+    '540877839180890133',
+    '540877839277228032',
+    '540877839034089482',
+    '540877839101067265',
+    '540877839009054722',
+    '540877838941945866',
+    '540877838941945876',
+];
+
+export function numberToEmoji(num: number): string {
+    switch (num) {
+        case 0:
+            return '540878358041329675';
+        case 1:
+            return '540877838769979393';
+        case 2:
+            return '540878007384932352';
+        case 3:
+            return '540877839180890133';
+        case 4:
+            return '540877839277228032';
+        case 5:
+            return '540877839034089482';
+        case 6:
+            return '540877839101067265';
+        case 7:
+            return '540877839009054722';
+        case 8:
+            return '540877838941945866';
+        case 9:
+            return '540877838941945876';
+        default:
+            return '540877839180890133';
+    }
+}

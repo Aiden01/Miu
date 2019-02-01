@@ -1,6 +1,7 @@
 import { Collection, Guild, RichEmbed, User } from 'discord.js';
 import { Bot } from '../Bot';
-import { flatArray } from '../utils';
+import IBook from '../interfaces/IBook';
+import { flatArray, numberToEmoji } from '../utils';
 
 export function confirmationEmbed(
     title: string,
@@ -162,4 +163,36 @@ export function serversList(
     }
 
     return embed;
+}
+
+export function booksResult(color: string, books: IBook[]): RichEmbed {
+    const embed = new RichEmbed()
+        .setTitle(`${books.length} results`)
+        .setColor(color);
+    books.forEach(({ title, summary, id }) =>
+        embed.addField(`**${id}** - ${title}`, summary)
+    );
+    return embed;
+}
+
+export function bookInfo(
+    color: string,
+    {
+        title,
+        summary,
+        moreInfoLink,
+        thumbnail,
+        authors,
+        publishedDate,
+        pageCount,
+    }: IBook
+): RichEmbed {
+    return new RichEmbed()
+        .setTitle(title)
+        .setColor(color)
+        .setThumbnail(thumbnail)
+        .addField('Summary', `${summary} [More](${moreInfoLink})`, true)
+        .addField('Author(s)', authors.join(', '), true)
+        .addField('Published date', publishedDate, true)
+        .addField('Page count', pageCount, true);
 }
